@@ -11,7 +11,7 @@ yarn start
 ```
 
 ## Instructions
-**It is tested on Microsoft Windows OS using the NodeJS version mentioned below. There is no guarantee it will start/work as expected on other OS**
+**It is tested on Microsoft Windows OS using the NodeJS version mentioned below. There is no guarantee It will start/work as expected on other OS.**
 The development server can be run locally using YARN. This allows testing of the application's code locally. 
 
 Required dependencies on the host PC are: [NodeJS](https://nodejs.org/), [ReactJs](https://reactjs.org/), [Yarn](https://yarnpkg.com/).
