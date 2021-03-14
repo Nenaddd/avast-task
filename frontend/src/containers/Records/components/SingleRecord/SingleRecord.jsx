@@ -6,10 +6,10 @@ import { RecordsContext } from '../../../../context/recordsContext';
 import { Text } from '../../../../components/text/text';
 
 const SingleRecord = ({ eventType, time, nodeName, index }) => {
-  const removeRecord = useContext(RecordsContext);
+  const {removeRecord, editRecord} = useContext(RecordsContext);
   return (
     <div className={styles.singleRecord}>
-      <div className={styles.recordInfo}>
+      <div className={styles.recordInfo} onClick={() => editRecord(index)}>
         <Text primary semibold>
           {eventType}
         </Text>

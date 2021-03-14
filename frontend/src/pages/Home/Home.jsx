@@ -11,10 +11,16 @@ import Error from '../../components/error/Error';
 import { shuffleArray } from '../../global/utils';
 import { API } from '../../global/endpoints';
 import { METHOD } from '../../global/constants';
+import { Input } from '../../components/input/input';
+import { Button } from '../../components/button/button';
 
 const Home = () => {
   const { value, setValue, removeByIndex } = useArray([]);
   const [showStats, setShowStats] = useState(false);
+  const [inputVal, setInputVal] = useState("");
+  const [eventIndex, setEventIndex] = useState("");
+
+  const [editMode, setEditMode] = useState(false);
 
   const obj = {
     method: METHOD.GET,
@@ -22,6 +28,7 @@ const Home = () => {
   };
   const response = useEndpoint(obj);
   const { pending, error, complete } = response;
+  
 
   useEffect(() => {
     if (response.data) {
@@ -39,6 +46,26 @@ const Home = () => {
     removeByIndex(index);
   }
 
+  const handleEditEvent = index => {
+    const clonedEl = JSON.parse(JSON.stringify(value[index]));
+    setEventIndex(index);
+    setInputVal(clonedEl.event.type);
+    setEditMode(true);
+  }
+
+  const handleEditChange = e => {
+    setInputVal(e.target.value);
+  }
+
+  const handleUpdateClick = () => {
+    const clonedValue = [...value];
+    clonedValue[eventIndex].event.type = inputVal;
+    setValue(value);
+    setInputVal("");
+    setEditMode(false);
+    setEventIndex(null)
+  }
+
   const handleRandomShuffle = () => {
     setShowStats(false);
     const shuffledEvents = shuffleArray([...value]);
@@ -48,9 +75,15 @@ const Home = () => {
   const showData = () => (
     <>
       <Header events={value} onToggleStats={handleSetShowStats} showStats={showStats} onRandomShuffle={handleRandomShuffle} />
-      <RecordsProvider removeRecord={index => handleRemoveEvent(index)}>
+      <RecordsProvider removeRecord={index => handleRemoveEvent(index)} editRecord={index => handleEditEvent(index)}>
         <Records records={value} />
       </RecordsProvider>
+      <ConditionalRender shouldRender={editMode}>
+        <Input type="text" value={inputVal} onChange={(e) => handleEditChange(e)} />
+        <Button onClick={handleUpdateClick} disabled={false} secondary>
+          Save
+         </Button>
+      </ConditionalRender>
       <ConditionalRender shouldRender={showStats}>
         <StatsDetails events={value} />
       </ConditionalRender>
