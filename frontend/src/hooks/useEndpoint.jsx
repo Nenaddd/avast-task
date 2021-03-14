@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -35,7 +34,7 @@ const useEndpoint = req => {
           complete: true,
         })
       );
-  }, [req?.url]);
+  }, [req.url]);
 
   return res;
 };

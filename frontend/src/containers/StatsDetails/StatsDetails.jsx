@@ -26,7 +26,6 @@ const StatsDetails = ({ events }) => {
         const { time } = names;
         const eventsArray = sortGuard(events, time);
 
-        console.log(checkIfArrayIsSorted(eventsArray, time));
         const statsData = {
             eventTypes: {},
             minDelay: eventsArray[1].time - eventsArray[0].time,
@@ -99,7 +98,7 @@ const StatsDetails = ({ events }) => {
     const showStats = () => (
         <>
             <div className={styles.column}>
-                {stats && stats.eventTypes && Object.keys(stats?.eventTypes).map((el) => <Text key={el}>Event type {el}: <Text semibold>{stats.eventTypes[el]}</Text></Text>)}
+                {stats && stats.eventTypes && Object.keys(stats.eventTypes).map((el) => <Text key={el}>Event type {el}: <Text semibold>{stats.eventTypes[el]}</Text></Text>)}
             </div>
             <div className={styles.column}>
                 <Text>Longest sequence: <Text semibold>{stats.longestSequence}</Text></Text>
