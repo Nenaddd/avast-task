@@ -1,0 +1,9 @@
+@import 'src/global/styles';
+
+.recordsContainer {
+  height: 40vh;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}

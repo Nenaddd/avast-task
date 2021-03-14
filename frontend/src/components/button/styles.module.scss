@@ -1,0 +1,34 @@
+@import 'src/global/styles';
+
+.button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 10px;
+  text-align: center;
+  border-radius: 18px;
+  width: 120px;
+  margin: 0 10px;
+
+  &.primary {
+    color: $white;
+    background-color: $green;
+  }
+
+  &.secondary {
+    color: $dark-gray;
+    border: 1px solid $green;
+    background-color: $white;
+  }
+
+  &.disabled {
+    color: $dark-gray;
+    border: 1px solid $dark-gray;
+    background: none;
+    cursor: disabled;
+  }
+
+  &:hover {
+    color: $red;
+  }
+}

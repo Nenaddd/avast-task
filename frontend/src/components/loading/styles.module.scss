@@ -1,0 +1,88 @@
+@import "src/global/styles";
+
+.dotFalling {
+  position: relative;
+  left: -9970px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: $green;
+  color: $green;
+  box-shadow: 9999px 0 0 0 $green;
+  animation: dotFalling 1s infinite linear;
+  animation-delay: 0.1s;
+}
+
+.stage {
+  padding-top: 20px;
+}
+
+.dotFalling::before,
+.dotFalling::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.dotFalling::before {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: $green;
+  color: $green;
+  animation: dotFallingBefore 1s infinite linear;
+  animation-delay: 0s;
+}
+
+.dotFalling::after {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: $green;
+  color: $green;
+  animation: dotFallingAfter 1s infinite linear;
+  animation-delay: 0.2s;
+}
+
+@keyframes dotFalling {
+  0% {
+    box-shadow: 9999px -15px 0 0 $loading-shadow;
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 9999px 0 0 0 $green;
+  }
+  100% {
+    box-shadow: 9999px 15px 0 0 $loading-shadow;
+  }
+}
+
+@keyframes dotFallingBefore {
+  0% {
+    box-shadow: 9984px -15px 0 0 $loading-shadow;
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 9984px 0 0 0 $green;
+  }
+  100% {
+    box-shadow: 9984px 15px 0 0 $loading-shadow;
+  }
+}
+
+@keyframes dotFallingAfter {
+  0% {
+    box-shadow: 10014px -15px 0 0 $loading-shadow;
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 10014px 0 0 0 $green;
+  }
+  100% {
+    box-shadow: 10014px 15px 0 0 $loading-shadow;
+  }
+}

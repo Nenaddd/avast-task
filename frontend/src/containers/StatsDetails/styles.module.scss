@@ -1,0 +1,20 @@
+@import 'src/global/styles';
+
+.stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+
+    .column {
+        display: grid;
+
+        &:first-child {
+            padding-right: 50px;
+        }
+
+        span {
+            padding-bottom: 10px;
+        }
+    }
+}
