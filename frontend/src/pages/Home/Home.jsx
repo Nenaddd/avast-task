@@ -19,7 +19,6 @@ const Home = () => {
   const [showStats, setShowStats] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const [eventIndex, setEventIndex] = useState("");
-
   const [editMode, setEditMode] = useState(false);
 
   const obj = {
@@ -61,15 +60,20 @@ const Home = () => {
     const clonedValue = [...value];
     clonedValue[eventIndex].event.type = inputVal;
     setValue(value);
-    setInputVal("");
-    setEditMode(false);
-    setEventIndex(null)
+    resetFields();
   }
 
   const handleRandomShuffle = () => {
-    setShowStats(false);
+    resetFields();
     const shuffledEvents = shuffleArray([...value]);
     setValue(shuffledEvents);
+  }
+
+  const resetFields = () => {
+    setShowStats(false);
+    setEditMode(false);
+    setEventIndex("");
+    setEventIndex(null);
   }
 
   const showData = () => (

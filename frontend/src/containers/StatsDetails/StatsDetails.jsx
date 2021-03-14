@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text } from '../../components/text/text';
 import { names } from '../../global/constants';
-import { sortGuard, msToTime } from '../../global/utils';
+import { sortGuard, msToTime, checkIfArrayIsSorted } from '../../global/utils';
 import styles from './styles.module.scss';
 
 const StatsDetails = ({ events }) => {
@@ -26,10 +26,11 @@ const StatsDetails = ({ events }) => {
         const { time } = names;
         const eventsArray = sortGuard(events, time);
 
+        console.log(checkIfArrayIsSorted(eventsArray, time));
         const statsData = {
             eventTypes: {},
-            minDelay: events[1].time - events[0].time,
-            maxDelay: events[1].time - events[0].time,
+            minDelay: eventsArray[1].time - eventsArray[0].time,
+            maxDelay: eventsArray[1].time - eventsArray[0].time,
             meanDelay: 0,
             longestSequence: 0,
             currentLongest: 0,
@@ -37,7 +38,7 @@ const StatsDetails = ({ events }) => {
         }
 
         const stats = eventsArray.reduce(reducer, statsData);
-        stats.minDelay = msToTime(stats.minDelay);
+        stats.minDelay = stats.minDelay;
         stats.maxDelay = msToTime(stats.maxDelay);
         stats.meanDelay = msToTime(stats.totalTime / events.length);
         stats.totalTime = msToTime(stats.totalTime);
