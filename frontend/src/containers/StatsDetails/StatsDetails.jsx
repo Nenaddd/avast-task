@@ -37,14 +37,13 @@ const StatsDetails = ({ events }) => {
         }
 
         const stats = eventsArray.reduce(reducer, statsData);
-        stats.minDelay = stats.minDelay;
+        stats.minDelay = msToTime(stats.minDelay);
         stats.maxDelay = msToTime(stats.maxDelay);
         stats.meanDelay = msToTime(stats.totalTime / events.length);
         stats.totalTime = msToTime(stats.totalTime);
         // we no longer need this property
         delete stats.currentLongest;
         setStats(stats);
-
     }
 
     const reducer = (obj, el, i, arr) => {

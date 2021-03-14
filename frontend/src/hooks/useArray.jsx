@@ -12,6 +12,11 @@ const useArray = (initial) => {
       setValue(clonedValue);
     },
     setValue: records => setValue(records),
+    updateArray: (index, newValue) => {
+      const clonedValue = [...value];
+      clonedValue[index].event.type = newValue;
+      setValue(value);
+    } 
   };
 };
 

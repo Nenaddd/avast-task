@@ -15,7 +15,7 @@ import { Input } from '../../components/input/input';
 import { Button } from '../../components/button/button';
 
 const Home = () => {
-  const { value, setValue, removeByIndex } = useArray([]);
+  const { value, setValue, removeByIndex, updateArray } = useArray([]);
   const [showStats, setShowStats] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const [eventIndex, setEventIndex] = useState("");
@@ -57,9 +57,7 @@ const Home = () => {
   }
 
   const handleUpdateClick = () => {
-    const clonedValue = [...value];
-    clonedValue[eventIndex].event.type = inputVal;
-    setValue(value);
+    updateArray(eventIndex, inputVal);
     resetFields();
   }
 
